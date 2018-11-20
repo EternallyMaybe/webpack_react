@@ -1,13 +1,13 @@
-import './style.css';
-import {square, cube} from './math.js';
+import '@/assets/css/style.css';
+// import _ from 'lodash';
+import {square, cube} from './math';
 
 function component() {
     var element = document.createElement('div');
 
     // lodash 是由当前 script 脚本 import 导入进来的
     element.innerHTML = [
-        'hello world!',
-        '5 cubed is equal to' + cube(5)
+        '5 cubed is equal to' + square(5)
     ].join('\n\n');
 +   element.classList.add('hello');
 
@@ -15,6 +15,4 @@ function component() {
 }
 document.body.appendChild(component());
 
-if (module.hot) {
-    module.hot.accept()
-}
+// _.add(1, 2);
