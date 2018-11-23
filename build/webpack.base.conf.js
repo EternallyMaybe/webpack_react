@@ -3,10 +3,11 @@ const paths = require("./paths");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
     entry: {
-        index: path.resolve(paths.PATH_SRC, "index.js")
+        index: path.resolve(paths.PATH_SRC, "index.tsx")
     },
     output: {
         path: paths.PATH_DIST,
@@ -15,16 +16,43 @@ module.exports = {
     },
     resolve: {
         alias: {
-            "@": paths.PATH_SRC,
-            "components": path.resolve(paths.PATH_SRC, "components")
+            '@': paths.PATH_SRC
         },
-        extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+        plugins: [
+            new TsconfigPathsPlugin({
+                configFile: path.resolve(paths.PATH_ROOT, 'tsconfig.json')
+            })
+        ]
     },
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, "css-loader"]
+                test: /\.ts(x?)$/,
+                use: [
+                    {
+                        loader: "awesome-typescript-loader",
+                        // options: {
+                        //     useCache: true,
+                        //     cacheDirectory: path.resolve(paths.PATH_ROOT, 'cache-loader')
+                        // }
+                    }
+                ]
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            includePaths: [
+                                path.resolve(paths.PATH_SRC, 'assets/css')
+                            ]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\??.*)?$/,
@@ -33,7 +61,8 @@ module.exports = {
                         loader: "url-loader",
                         options: {
                             limit: 10000,
-                            name: "static/images/[name].[hash:7].[ext]"                        }
+                            name: "static/images/[name].[hash:7].[ext]"                        
+                        }
                     }
                 ]
             },

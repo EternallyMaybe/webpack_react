@@ -14,6 +14,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/react": "^16.7.6",
+    "@types/react-dom": "^16.0.9",
+    "awesome-typescript-loader": "^5.2.1",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
@@ -21,7 +24,13 @@
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.10.0",
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^4.3.1",
+    "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.1.6",
     "url-loader": "^1.1.2",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
@@ -31,6 +40,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "lodash": "^4.17.11"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   }
 }

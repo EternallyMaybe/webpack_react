@@ -1,0 +1,10 @@
+@import 'var.scss';
+
+#app {
+    font-size: 20px;
+    .hello {
+        height: 300px;
+        color: $color;
+        background: url('../img/bg.jpg') 50% no-repeat;
+    }
+}
